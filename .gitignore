@@ -1,6 +1,5 @@
 # site ignore directories
-bin/
-obj/
+**/bin
 
 #OS junk files
 [Tt]humbs.db
