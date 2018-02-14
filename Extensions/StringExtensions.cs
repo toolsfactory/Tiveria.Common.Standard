@@ -145,5 +145,70 @@ namespace Tiveria.Common.Extensions
             return bytes;
         }
 
+        public static string NormalizeWhiteSpaces(this string input)
+        {
+            char chr;
+            int index = 0;
+            bool skip = false;
+            var src = input.ToCharArray();
+            for (int i=0; i < input.Length; i++)
+            {
+                chr = src[i];
+                switch (chr)
+                {
+                    case '\u0009':
+                    case '\u000A':
+                    case '\u000B':
+                    case '\u000C':
+                    case '\u000D':
+                    case '\u0085':
+                    case '\u0020':
+                    case '\u00A0':
+                    case '\u1680':
+                    case '\u2000':
+                    case '\u2001':
+                    case '\u2002':
+                    case '\u2003':
+                    case '\u2004':
+                    case '\u2005':
+                    case '\u2006':
+                    case '\u2007':
+                    case '\u2008':
+                    case '\u2009':
+                    case '\u200A':
+                    case '\u2028':
+                    case '\u2029':
+                    case '\u202F':
+                    case '\u205F':
+                    case '\u3000':
+                        if (skip) continue;
+                        src[index++] = chr;
+                        skip = true;
+                        continue;
+                    default:
+                        skip = false;
+                        src[index++] = chr;
+                        continue;
+                }
+            }
+            return new string(src, 0, index);
+        }
+
+        public static string RemoveAll(this string input, char removalchar)
+        {
+            int len = input.Length,
+                index = 0,
+                i = 0;
+            var src = input.ToCharArray();
+            char ch;
+            for (; i < len; i++)
+            {
+                ch = src[i];
+                if (ch != removalchar)
+                    src[index++] = ch;
+            }
+            return new string(src, 0, index);
+        }
+
     }
 }
