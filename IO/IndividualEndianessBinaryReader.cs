@@ -6,37 +6,37 @@ using System.Linq;
 namespace Tiveria.Common.IO
 {
     /// <summary>
-    /// A BinaryReader that is EndianessAwareBinaryReader aware and supports additional functions.
-    /// It's based off a <code>BinaryReader</code>, which is a little-endian reader.
+    /// A BinaryReader that is Endianess aware on a individual read level.
+    /// It's based off a <code>ExtendedBinaryReader</code>, which is a little-endian reader.
     /// </summary>
-    public class EndianessAwareBinaryReader : ExtendedBinaryReader
+    public class IndividualEndianessBinaryReader : ExtendedBinaryReader
     {
         #region Constructors
-        public EndianessAwareBinaryReader(Stream stream) : base(stream)
+        public IndividualEndianessBinaryReader(Stream stream) : base(stream)
         { }
 
         ///<summary>
         /// Creates a BinaryReader backed by a file (RO)
         ///</summary>
-        public EndianessAwareBinaryReader(string file) : base(File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+        public IndividualEndianessBinaryReader(string file) : base(File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read))
         { }
 
         ///<summary>
         ///Creates a BinaryReader backed by a byte buffer
         ///</summary>
-        public EndianessAwareBinaryReader(byte[] bytes) : base(new MemoryStream(bytes))
+        public IndividualEndianessBinaryReader(byte[] bytes) : base(new MemoryStream(bytes))
         { }
 
         ///<summary>
         ///Creates a BinaryReader backed by a byte buffer
         ///</summary>
-        public EndianessAwareBinaryReader(byte[] bytes, int offset) : base(new MemoryStream(bytes, offset, bytes.Length - offset ))
+        public IndividualEndianessBinaryReader(byte[] bytes, int offset) : base(new MemoryStream(bytes, offset, bytes.Length - offset ))
         { }
 
         ///<summary>
         ///Creates a BinaryReader backed by a byte buffer
         ///</summary>
-        public EndianessAwareBinaryReader(byte[] bytes, int offset, int count) : base(new MemoryStream(bytes, offset, count))
+        public IndividualEndianessBinaryReader(byte[] bytes, int offset, int count) : base(new MemoryStream(bytes, offset, count))
         { }
         #endregion
 

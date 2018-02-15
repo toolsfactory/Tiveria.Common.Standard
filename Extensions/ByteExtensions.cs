@@ -31,6 +31,5 @@ namespace Tiveria.Common.Extensions
             //    destination[destindex + i] = source[srcindex + i];
             Array.Copy(source, srcindex, destination, destindex, length);
         }
-
     }
 }

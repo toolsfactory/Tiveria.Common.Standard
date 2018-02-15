@@ -5,86 +5,94 @@ using System.Text;
 
 namespace Tiveria.Common.Logging
 {
-    class ConsoleLogger : ILogger
+    public class ConsoleLogger : ILogger
     {
+        #region static configuration
+        public static bool UseErrorOutputStream = true;
+        #endregion
+
+        #region public properties
+        public bool IsDebugEnabled => true;
+        public bool IsInfoEnabled => true;
+        public bool IsWarnEnabled => true;
+        public bool IsErrorEnabled => true;
+        public bool IsFatalEnabled => true;
+        #endregion
+
         public void Debug(object message)
         {
-            Console.WriteLine("Debug: " + message);
+            WriteLine("Debug: " + message, ConsoleColor.Blue);
         }
 
         public void Debug(object message, Exception exception)
         {
-            Console.WriteLine("Debug: " + message);
-            Console.WriteLine("Debug Exception: " + exception);
+            WriteLine("Debug: " + message, exception, ConsoleColor.Blue);
         }
 
         public void Info(object message)
         {
-            Console.WriteLine("Info: " + message);
+            WriteLine("Info: " + message, ConsoleColor.White);
         }
 
         public void Info(object message, Exception exception)
         {
-            Console.WriteLine("Info: " + message);
-            Console.WriteLine("Info Exception: " + exception);
+            WriteLine("Info: " + message, exception, ConsoleColor.White);
         }
 
         public void Warn(object message)
         {
-            Console.WriteLine("Warn: " + message);
+            WriteLine("Warn: " + message, ConsoleColor.Yellow);
         }
 
         public void Warn(object message, Exception exception)
         {
-            Console.WriteLine("Warn: " + message);
-            Console.WriteLine("Warn Exception: " + exception);
+            WriteLine("Warn: " + message, exception, ConsoleColor.Yellow);
         }
 
         public void Error(object message)
         {
-            Console.WriteLine("Error: " + message);
+            WriteLine("Error: " + message, ConsoleColor.Red);
         }
 
         public void Error(object message, Exception exception)
         {
-            Console.WriteLine("Error: " + message);
-            Console.WriteLine("Error Exception: " + exception);
+            WriteLine("Error: " + message,  exception, ConsoleColor.Red);
         }
 
         public void Fatal(object message)
         {
-            Console.WriteLine("Fatal: " + message);
+            WriteLine("Fatal: " + message, ConsoleColor.Magenta);
         }
 
         public void Fatal(object message, Exception exception)
         {
-            Console.WriteLine("Fatal: " + message);
-            Console.WriteLine("Fatal Exception: " + exception);
+            WriteLine("Fatal: " + message, exception, ConsoleColor.Magenta);
         }
 
-        public bool IsDebugEnabled
+        private void WriteLine(string text, ConsoleColor color)
         {
-            get { return true; }
+            var previous = Console.ForegroundColor;
+            if (UseErrorOutputStream)
+                Console.Error.WriteLine(text);
+            else
+                Console.WriteLine(text);
+            Console.ForegroundColor = previous;
         }
 
-        public bool IsInfoEnabled
+        private void WriteLine(string text, Exception ex, ConsoleColor color)
         {
-            get { return true; }
-        }
-
-        public bool IsWarnEnabled
-        {
-            get { return true; }
-        }
-
-        public bool IsErrorEnabled
-        {
-            get { return true; }
-        }
-
-        public bool IsFatalEnabled
-        {
-            get { return true; }
+            var previous = Console.ForegroundColor;
+            if (UseErrorOutputStream)
+            {
+                Console.Error.WriteLine(text);
+                Console.Error.WriteLine("  Exception: " + ex);
+            }
+            else
+            {
+                Console.WriteLine(text);
+                Console.WriteLine("  Exception: " + ex);
+            }
+            Console.ForegroundColor = previous;
         }
     }
 }

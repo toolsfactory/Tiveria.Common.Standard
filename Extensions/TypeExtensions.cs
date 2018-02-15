@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 
 namespace Tiveria.Common.Extensions
 {
@@ -56,10 +58,21 @@ namespace Tiveria.Common.Extensions
 
         public static bool Implements<I>(this Type type, I intfce) where I : class
         {
-            if (((intfce as Type) == null) || !(intfce as Type).IsInterface)
+            if ((!(intfce is Type)) || !(intfce as Type).IsInterface)
                 throw new ArgumentException("Only interfaces can be 'implemented'.");
 
             return (intfce as Type).IsAssignableFrom(type);
         }
+
+        public static Type GetTypeInfo(this Type type)
+        {
+            return type;
+        }
+
+        public static IEnumerable<MethodInfo> GetDeclaredMethods(this Type type, string name)
+        {
+            return type.GetMethods().Where(m => m.Name.Equals(name));
+        }
+
     }
 }
