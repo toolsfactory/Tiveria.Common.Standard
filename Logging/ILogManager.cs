@@ -8,6 +8,6 @@ namespace Tiveria.Common.Logging
     public interface ILogManager
     {
         ILogger GetLogger(string name);
-        ILogger GetLogger(Type type);  
+        ILogger GetLogger(Type type); 
     }
 }

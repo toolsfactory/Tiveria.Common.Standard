@@ -17,6 +17,7 @@ namespace Tiveria.Common.Logging
         public bool IsWarnEnabled => true;
         public bool IsErrorEnabled => true;
         public bool IsFatalEnabled => true;
+        public bool IsTraceEnabled => true;
         #endregion
 
         public void Debug(object message)
@@ -93,6 +94,16 @@ namespace Tiveria.Common.Logging
                 Console.WriteLine("  Exception: " + ex);
             }
             Console.ForegroundColor = previous;
+        }
+
+        public void Trace(object message)
+        {
+            WriteLine("Trace: " + message, ConsoleColor.Gray);
+        }
+
+        public void Trace(object message, Exception exception)
+        {
+            WriteLine("Trace: " + message, exception, ConsoleColor.Gray);
         }
     }
 }

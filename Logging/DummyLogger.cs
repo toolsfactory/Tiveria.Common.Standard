@@ -47,6 +47,14 @@ namespace Tiveria.Common.Logging
         {
         }
 
+        public void Trace(object message)
+        {
+        }
+
+        public void Trace(object message, Exception exception)
+        {
+        }
+
         public bool IsDebugEnabled
         {
             get { return false; }
@@ -71,5 +79,7 @@ namespace Tiveria.Common.Logging
         {
             get { return false; }
         }
+
+        public bool IsTraceEnabled => false;
     }
 }

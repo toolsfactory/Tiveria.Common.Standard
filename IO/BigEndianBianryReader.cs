@@ -3,6 +3,9 @@ using System.IO;
 
 namespace Tiveria.Common.IO
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BigEndianBianryReader : EndianBinaryReader
     {
         public BigEndianBianryReader(Stream input) : base(input, Endian.Big)
