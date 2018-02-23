@@ -31,5 +31,15 @@ namespace Tiveria.Common.Extensions
             //    destination[destindex + i] = source[srcindex + i];
             Array.Copy(source, srcindex, destination, destindex, length);
         }
+
+        public static byte[] Clone(this byte[] source, int offset, int length)
+        {
+            if (offset > source.Length || offset < 0)
+                throw new ArgumentOutOfRangeException("invalid offset");
+            var len = Math.Min(length, source.Length - offset);
+            var result = new byte[len];
+            Array.Copy(source, offset, result, 0, len);
+            return result;
+        }
     }
 }

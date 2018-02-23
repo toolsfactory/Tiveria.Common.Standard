@@ -47,8 +47,7 @@ namespace Tiveria.Common.Extensions
             else
                 return false;
         }
-
-
+        
         public static bool IsValidEmail(this string input)
         {
             // Return true if strIn is in valid e-mail format.
@@ -223,8 +222,13 @@ namespace Tiveria.Common.Extensions
             return true;
         }
 
-        public static bool ListContains(this string s, char separator, string value)
+        public static bool ListContains(this string s, char separator, string value, bool ignorecase = true)
         {
+            if(ignorecase)
+            {
+                s.ToLower();
+                value.ToLower();
+            }
             var parts = s.Split(separator);
             foreach (string part in parts)
             {
@@ -232,6 +236,7 @@ namespace Tiveria.Common.Extensions
             }
             return false;
         }
+
 
         /// <summary>
         /// Array of valid wildcards
