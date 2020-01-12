@@ -1,7 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>2015-2020 Michael Geissler</Copyright>
+    <Description>Base library used in many Tiveria projects. This version is now .Net Standard 2.0 compatible</Description>
+    <PackageId>Tiveria.Common.Standard</PackageId>
+    <Authors>Michael Geissler</Authors>
+    <Company>Tiveria</Company>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/toolsfactory/Tiveria.Common.Standard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/toolsfactory/Tiveria.Common.Standard</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <Configurations>Debug;Release;Release Linux</Configurations>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>../../bin</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Linux|AnyCPU'">
+    <OutputPath>../../bin</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>../../bin</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +45,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EnsureRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

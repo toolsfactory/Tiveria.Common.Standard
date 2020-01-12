@@ -56,4 +56,5 @@ namespace Tiveria.Common
              Replace("\\?", ".") + "$";
         }
     }
+
 }

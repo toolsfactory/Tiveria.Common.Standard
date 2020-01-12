@@ -10,17 +10,17 @@ namespace Tiveria.Common.IO
     /// </summary>
     public class IndividualEndianessBinaryWriter : BinaryWriter
     {
-        public void Write(byte[] buffer)
+         public override void Write(byte[] buffer)
         {
             base.Write(buffer);
         }
 
-        public void Write(byte[] buffer, int index, int count)
+        public override void Write(byte[] buffer, int index, int count)
         {
             base.Write(buffer, index, count);
         }
 
-        public void Write(char ch)
+        public override void Write(char ch)
         {
             base.Write(ch);
         }

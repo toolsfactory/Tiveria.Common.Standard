@@ -332,7 +332,6 @@ namespace Tiveria.Common.Extensions
         /// <returns>The nearest multiple of factor that is greater than or equal to value.</returns>
         /// <param name="value">A 8-bit signed integer to be rounded.</param>
         /// <param name="factor">The factor to round the value to.</param>
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         public static byte RoundUp(this byte value, byte factor) { var d = (value % factor); return (byte)(d == 0 ? value : value + (factor - d)); }
 
         /// <summary>Rounds a decimal value to the next integer.</summary>

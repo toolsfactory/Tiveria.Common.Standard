@@ -60,7 +60,7 @@ namespace Tiveria.Common
 
         public void Clear()
         {
-            if (_Items.Count == null)
+            if (_Items.Count == 0)
                 return;
 
             _Items.Clear();
@@ -117,7 +117,7 @@ namespace Tiveria.Common
         public bool RemoveElement(string value)
         {
             Nullable<KeyValuePair<string,bool>> element = _Items.Where(c => c.Key == value).FirstOrDefault();
-            if (!element.HasValue == null)
+            if (!element.HasValue)
                 return false;
             _Items.Remove(element.Value);
             OnListUpdated(null);
@@ -127,7 +127,7 @@ namespace Tiveria.Common
         public bool RemoveLastElement()
         {
             Nullable<KeyValuePair<string,bool>> element = _Items.Last(c => c.Value == false);
-            if (!element.HasValue == null)
+            if (!element.HasValue)
                 return false;
             _Items.Remove(element.Value);
             OnListUpdated(null);

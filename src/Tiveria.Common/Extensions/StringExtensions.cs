@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -69,8 +71,7 @@ namespace Tiveria.Common.Extensions
 
         public static bool IsValidIP(this string url)
         {
-            System.Net.IPAddress address;
-            return System.Net.IPAddress.TryParse(url, out address);
+            return System.Net.IPAddress.TryParse(url, out var address);
         }
 
         public static bool IsValidHostName(this string url)
@@ -110,7 +111,7 @@ namespace Tiveria.Common.Extensions
                     return true;
                 }
             }
-            catch (Exception e)
+            catch 
             {
                 return false;
             }
@@ -325,6 +326,21 @@ namespace Tiveria.Common.Extensions
             }
 
             return j >= pattern.Length;
+        }
+
+        public static string[] ToNotEmptyLines(this string value)
+        {
+            return value.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public static string[] ToLines(this string value)
+        {
+            return value.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        }
+
+        public static string[] TrimStringArray(this IEnumerable<string> array)
+        {
+            return array.Select(item => item.Trim()).ToArray();
         }
     }
 }

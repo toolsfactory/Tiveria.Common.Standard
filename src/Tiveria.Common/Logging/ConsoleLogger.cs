@@ -9,6 +9,7 @@ namespace Tiveria.Common.Logging
     {
         #region static configuration
         public static bool UseErrorOutputStream = true;
+        private readonly string _name;
         #endregion
 
         #region public properties
@@ -19,6 +20,11 @@ namespace Tiveria.Common.Logging
         public bool IsFatalEnabled => true;
         public bool IsTraceEnabled => true;
         #endregion
+
+        public ConsoleLogger(string name)
+        {
+            _name = name;
+        }
 
         public void Debug(object message)
         {
@@ -74,9 +80,9 @@ namespace Tiveria.Common.Logging
         {
             var previous = Console.ForegroundColor;
             if (UseErrorOutputStream)
-                Console.Error.WriteLine(text);
+                Console.Error.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} [{_name}] {text}");
             else
-                Console.WriteLine(text);
+                Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} [{_name}] {text}");
             Console.ForegroundColor = previous;
         }
 
@@ -85,12 +91,12 @@ namespace Tiveria.Common.Logging
             var previous = Console.ForegroundColor;
             if (UseErrorOutputStream)
             {
-                Console.Error.WriteLine(text);
+                Console.Error.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} [{_name}] {text}");
                 Console.Error.WriteLine("  Exception: " + ex);
             }
             else
             {
-                Console.WriteLine(text);
+                Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} [{_name}] {text}");
                 Console.WriteLine("  Exception: " + ex);
             }
             Console.ForegroundColor = previous;
